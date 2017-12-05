@@ -19,6 +19,7 @@ type (
 		Event       Constraint
 		Branch      Constraint
 		Status      Constraint
+		Refspec		Constraint
 		Matrix      ConstraintMap
 		Local       types.BoolTrue
 	}
@@ -43,6 +44,7 @@ func (c *Constraints) Match(metadata frontend.Metadata) bool {
 		c.Environment.Match(metadata.Curr.Target) &&
 		c.Event.Match(metadata.Curr.Event) &&
 		c.Branch.Match(metadata.Curr.Commit.Branch) &&
+		c.Refspec.Match(metadata.Curr.Commit.Refspec) &&
 		c.Repo.Match(metadata.Repo.Name) &&
 		c.Ref.Match(metadata.Curr.Commit.Ref) &&
 		c.Instance.Match(metadata.Sys.Host) &&
